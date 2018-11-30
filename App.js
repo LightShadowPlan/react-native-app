@@ -37,13 +37,15 @@ export default class FlatListBasics extends Component {
     }
     checkColor = (i, index, num, newPoint) => {
         return () => {
-            if (i === index && num < this.state.maxNum) {
-                num = ( newPoint % 2 === 1 ? num + 1 : num )
+            if (i === index && newPoint < this.state.maxTouchPoints) {
+                if( num < 10 ) {
+                    num = ( newPoint % 2 === 1 ? num + 1 : num )
+                }
                 this.setState({
                     num: num,
                     newPoint: newPoint + 1
                 })
-            } else if (num === this.state.maxTouchPoints) {
+            } else if (newPoint === this.state.maxTouchPoints) {
                 this.setState({finish: true})
             }
         }
